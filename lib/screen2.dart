@@ -14,7 +14,7 @@ class _Screen2State extends State<Screen2> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Pertemuan 06'),
+        title: Text('latihan button'),
       ),
       body: Center(
         child: Column(
