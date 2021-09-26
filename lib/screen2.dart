@@ -15,6 +15,20 @@ class _Screen2State extends State<Screen2> {
     return Scaffold(
       appBar: AppBar(
         title: Text('latihan button'),
+        actions: [
+          PopupMenuButton(
+            onSelected: (args){},
+            itemBuilder: (BuildContext ctx) {
+              return [
+                PopupMenuItem(child: Text('Menu 1')),
+                PopupMenuItem(child: Text('Menu 2')),
+                PopupMenuItem(child: Text('Menu 3')),
+                PopupMenuItem(child: Text('Menu 4')),
+                PopupMenuItem(child: Text('Menu 5')),
+              ];
+            },
+          ),
+        ],
       ),
       body: Center(
         child: Column(
@@ -42,6 +56,13 @@ class _Screen2State extends State<Screen2> {
                 DropdownMenuItem(child: Text('Opsi 3'), value: 'opsi 3', onTap: () {}),
                 DropdownMenuItem(child: Text('Opsi 4'), value: 'opsi 4', onTap: () {}),
                 DropdownMenuItem(child: Text('Opsi 5'), value: 'opsi 5', onTap: () {}),
+              ],
+            ),
+            ButtonBar(
+              children: [
+                ElevatedButton(onPressed: () {}, child: Text('Btn 1')),
+                ElevatedButton(onPressed: () {}, child: Text('Btn 2')),
+                ElevatedButton(onPressed: () {}, child: Text('Btn 3')),
               ],
             ),
           ],
