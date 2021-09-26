@@ -1,3 +1,4 @@
+import 'package:app_studio/detail_screen.dart';
 import 'package:app_studio/main_screen.dart';
 import 'package:app_studio/main_screen2.dart';
 import 'package:app_studio/screen2.dart';
@@ -15,7 +16,8 @@ class MyApp2 extends StatelessWidget{
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       // home: Screen2(),
-      home: MainScreen2(),
+      // home: MainScreen2(),
+      home: DetailScreen(),
       // home: MyApp(),
     );
   }
