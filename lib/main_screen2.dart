@@ -1,4 +1,4 @@
-import 'package:app_studio/models/model_mahasiswa.dart';
+import 'package:app_studio/models/model_person.dart';
 import 'package:flutter/material.dart';
 
 class MainScreen2 extends StatefulWidget {

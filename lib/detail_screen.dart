@@ -1,3 +1,4 @@
+import 'package:app_studio/models/model_person.dart';
 import 'package:flutter/material.dart';
 
 class DetailScreen extends StatefulWidget {
@@ -9,8 +10,21 @@ class DetailScreen extends StatefulWidget {
 
 class _DetailScreenState extends State<DetailScreen> {
   var selectedPekerjaan = -1;
+  ModelPerson? _person;
+
   @override
   Widget build(BuildContext context) {
+    var args = ModalRoute.of(context)!.settings.arguments as Map<String, Object>;
+    if (args.containsKey('person')) {
+      var person = args['person'];
+      if (person is ModelPerson) {
+        _person = person;
+        if (selectedPekerjaan < 1) {
+          selectedPekerjaan = _person?.pekerjaan ?? -1;
+        }
+      }
+    }
+
     return Scaffold(
       appBar: AppBar(title: Text('Detail Person')),
       body: Container(
@@ -29,10 +43,10 @@ class _DetailScreenState extends State<DetailScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text('Nama'),
-                      Text('Agus'),
+                      Text(_person?.nama ?? 'Nama'),
                       SizedBox(height: 20),
                       Text('NIK'),
-                      Text('12345'),
+                      Text(_person?.nik ?? 'nik'),
                       SizedBox(height: 20),
                       Text('Pekerjaan'),
                       DropdownButton(
@@ -43,7 +57,7 @@ class _DetailScreenState extends State<DetailScreen> {
                           });
                         },
                         isExpanded: true,
-                        value: selectedPekerjaan <= 1 ? null : selectedPekerjaan,
+                        value: selectedPekerjaan < 1 ? null : selectedPekerjaan,
                         items: [
                           DropdownMenuItem(child: Text('Petani'), value: 1),
                           DropdownMenuItem(child: Text('Nelayan'), value: 2),
@@ -56,12 +70,23 @@ class _DetailScreenState extends State<DetailScreen> {
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           ElevatedButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
                             child: Text('Batal'),
                             style: ElevatedButton.styleFrom(primary: Colors.red),
                           ),
                           SizedBox(width: 10),
-                          ElevatedButton(onPressed: () {}, child: Text('Simpan')),
+                          ElevatedButton(
+                            onPressed: () {
+                              Navigator.of(context).pop(
+                                {
+                                  'pekerjaan': selectedPekerjaan,
+                                },
+                              );
+                            },
+                            child: Text('Simpan'),
+                          ),
                         ],
                       ),
                     ],
@@ -73,5 +98,18 @@ class _DetailScreenState extends State<DetailScreen> {
         ),
       ),
     );
+  }
+
+  String _getNamaPekerjaan(int id) {
+    if (id == 1) {
+      return 'Petani';
+    }
+    if (id == 2) {
+      return 'Nelayan';
+    }
+    if (id == 3) {
+      return 'Karyawan Swasta';
+    }
+    return 'Mahasiswa';
   }
 }

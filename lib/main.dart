@@ -15,13 +15,13 @@ class MyApp2 extends StatelessWidget{
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      // home: Screen2(),
-      // home: MainScreen2(),
-      home: DetailScreen(),
-      // home: MyApp(),
+      home: MainScreen(),
+      routes: {
+        '/home'   : (BuildContext ctx) => MainScreen(),
+        '/detail' : (BuildContext ctx) => DetailScreen(),
+      },
     );
   }
-
 }
 
 class MyApp extends StatelessWidget {
